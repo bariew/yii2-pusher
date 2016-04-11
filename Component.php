@@ -113,6 +113,9 @@ class Component extends \yii\base\Component
     public function getUserChannelName($ids = false)
     {
         $ids = $ids ? : \Yii::$app->user->id;
+        if (!$ids) {
+            return '';
+        }
         $result = [];
         foreach ((array) $ids as $id) {
             $result[] = 'user_' . sha1($this->secret . $id);
